@@ -2,7 +2,7 @@
 
 
 #*
-#*  Copyright 2015-2021 Felix Garcia Carballeira, Alejandro Calderon Mateos, Javier Prieto Cepeda, Saul Alonso Monsalve
+#*  Copyright 2015-2026 The WepSIM team (see docs/WEPSIM-TEAM.md)
 #*
 #*  This file is part of WepSIM.
 #*
@@ -120,13 +120,13 @@ i18n_eltos['examples'] = {
              "Interruptions":						"Interruptions",
              "Int. + syscall + except.":				"Int. + syscall + except.",
              "I/O":							"I/O",
+             "Timer":							"Timer",
              "Looping":							"Looping",
              "madd, mmul, mxch":					"madd, mmul, mxch",
              "Masks & shift":						"Masks & shift",
              "Matrix":							"Matrix",
              "Memory access":						"Memory access",
              "SC 1, 4-5, 8, 11-12":					"SC 1, 4-5, 8, 11-12",
-             "strlen_2 + skipasciicode_2":				"strlen_2 + skipasciicode_2",
              "Subrutine":						"Subrutine",
              "syscall 1, 4-5, 8, 11-12":				"syscall 1, 4-5, 8, 11-12",
              "System call":						"System call",
@@ -137,7 +137,6 @@ i18n_eltos['examples'] = {
              "example_04_01":				"Advanced example with interruption, system call, and exception.",
              "example_05_01":				"Application-specific extension: addv + seqv.",
              "example_05_03":				"Application-specific extension: madd + mmul + mxch.",
-             "example_05_02":				"Application-specific extension: strlen_2 + skipasciicode_2.",
              "example_03_01":				"<b>Instructive</b> example with floating point exception.",
              "example_03_02":				"<b>Instructive</b> example with interruptions support: fetch, RETI, and .ktext/.kdata.",
              "example_03_03":				"<b>Instructive</b> example with system call support.",
@@ -163,6 +162,7 @@ i18n_eltos['examples'] = {
              "Intermediate":				"Intermediate",
              "Laboratory":				"Laboratory",
              "Operating Systems":			"Operating Systems",
+             "Extra":					"Extra",
              "Special":					"Special",
 
              "Load Assembly only": 			"Load Assembly only",
@@ -178,6 +178,7 @@ i18n_eltos['examples'] = {
 i18n_eltos['gui'] = {
 
 	"Loading WepSIM...":  			        "Loading WepSIM...",
+	"About":                                 	"About",
 	"Configuration":  			        "Configuration",
 	"MicroCode":  			        	"MicroCode",
 	"Assembly": 		     			"Assembly",
@@ -227,12 +228,12 @@ i18n_eltos['gui'] = {
 	"instructions":                                 "instructions",
 
 	"simulator intro 1": 		                "You can select the hardware to be used. The default one is the EP (Elemental Processor) hardware.<br>" +
-							"You can use <span class='text-primary bg-light' onclick=\"setTimeout(function(){$('#dd1').dropdown('toggle');},50);\">the mode selector</span> to change the hardware used.",
+							"You can use <span class='text-primary bg-body-tertiary' onclick=\"setTimeout(function(){$('#dd1').dropdown('toggle');},50);\">the mode selector</span> to change the hardware used.",
 	"simulator intro 2": 		                "Then you need to load the microcode (defines the instruction set) and the assembly code.<br>" +
-							"You can use <span class='text-primary bg-light' onclick='wsweb_dialog_open(\"examples\");'>an example</span>, " +
-							"<span class='text-primary bg-light' onclick='wsweb_select_action(\"checkpoint\");'>load it from a file</span>, " +
-							"or you can edit <span class='text-primary bg-light' onclick='wsweb_change_workspace_microcode();'>a new microcode</span> " +
-							" and <span class='text-primary bg-light' onclick='wsweb_change_workspace_assembly();'>a new assembly code</span>.",
+							"You can use <span class='text-primary bg-body-tertiary' onclick='wsweb_dialog_open(\"examples\");'>an example</span>, " +
+							"<span class='text-primary bg-body-tertiary' onclick='wsweb_select_action(\"checkpoint\");'>load it from a file</span>, " +
+							"or you can edit <span class='text-primary bg-body-tertiary' onclick='wsweb_change_workspace_microcode();'>a new microcode</span> " +
+							" and <span class='text-primary bg-body-tertiary' onclick='wsweb_change_workspace_assembly();'>a new assembly code</span>.",
 	"simulator intro 3": 		                "Finally, in the simulator you are able to execute the microcode plus assembly loaded before.<br>" +
 							"You can execute it both, at microinstruction level or assembly instruction level.",
 
@@ -252,8 +253,8 @@ i18n_eltos['gui'] = {
 	"Stats":					"Stats",
 	"Memory":					"Memory",
 	"Keyboard+Display":				"Keyboard+Display",
-	"I/O Stats":					"I/O Stats",
-	"I/O Configuration":				"I/O Configuration",
+	"Timer Stats":					"Timer Stats",
+	"Timer Configuration":				"Timer Config.",
 
 	"Recent":                                       "Recent",
 	"Refresh":  			                "Refresh",
@@ -270,7 +271,6 @@ i18n_eltos['gui'] = {
         "Actions": 					"Actions",
         "Utilities": 					"Utilities",
         "Information from": 				"Information from",
-        "Pick firm/soft from": 				"Pick firm/soft from",
         "Welcome tutorial": 				"Welcome tutorial",
         "idiom": 					"idiom",
         "Assembly only": 				"Assembly only",
@@ -314,8 +314,8 @@ i18n_eltos['help'] = {
 	"License, platforms, etc.":	"License, platforms, etc.",
 	"help_04_01":			"WepSIM license, supported platforms, technologies used",
 
-	"Authors":			"Authors",
-	"help_04_02":			"Authors of WepSIM"
+	"Authors":			"WepSIM Team",
+	"help_04_02":			"WepSIM Team"
 
 } ;
 
@@ -544,9 +544,11 @@ i18n_eltos['compiler'] = {
 			   "It is compulsory to define at least one of those tags in order to execute a program",
    "UNKNOWN 1":            "An unknown error ocurred (1) for field type: ",
    "UNKNOWN 2":            "Unexpected error (2)",
+   "REMEMBER FORMAT USED": "Remember the instruction format you try to use ",
    "REMEMBER I. FORMAT":   "Remember that the instruction format has been defined as: ",
    "SEVERAL CANDIDATES":   "Instruction and fields match with more than one instruction in microcode. " +
 			   "Please check the microcode. Currently, the instruction format can be: ",
+   "NOT MATCH FORMAT":     "Instruction and fields don't match with defined formats in microcode. ",
    "NOT MATCH MICRO":      "Instruction and fields don't match with microprogram. ",
    "CHECK MICROCODE":      "Please check the microcode. Probably you forgot to add a field, " +
                            "a number is out of range, or you just used a wrong instruction",
@@ -619,7 +621,7 @@ def print_content(L_D, C_N):
 
     # + print header
     f.write("/*\n") ;
-    f.write(" *  Copyright 2015-2021 Felix Garcia Carballeira, Alejandro Calderon Mateos, Javier Prieto Cepeda, Saul Alonso Monsalve\n") ;
+    f.write(" *  Copyright 2015-2026 The WepSIM team (see docs/WEPSIM-TEAM.md)\n") ;
     f.write(" *\n") ;
     f.write(" *  This file is part of WepSIM.\n") ;
     f.write(" *\n") ;
@@ -661,8 +663,8 @@ def print_content(L_D, C_N):
             f.write("\t\t'" + translation_origin[index] + "':\t\t'" + translation_destination + "',\n") ;
     except Exception as e:
         print("\tERROR: " + str(e))
-        #print("translation list:")
-        #print(translation_list)
+        print("translation list:")
+        print(translation_list)
 
     # + print last lines
     f.write("\t\t'_last_':\t\t'_last_'\n") ;
